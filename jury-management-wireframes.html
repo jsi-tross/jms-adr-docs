@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jury Management Solution - Interactive Wireframes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        h1 {
+            color: #1976d2;
+            margin-bottom: 40px;
+            font-size: 42px;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+        }
+        
+        .wireframe-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .wireframe-section.active {
+            display: block;
+        }
+        
+        .wireframe-header {
+            background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+            color: white;
+            padding: 24px 32px;
+        }
+        
+        .wireframe-header h3 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+        
+        .wireframe-header p {
+            opacity: 0.95;
+            font-size: 16px;
+        }
+        
+        .wireframe-content {
+            padding: 40px;
+        }
+        
+        .wireframe {
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 24px;
+        }
+        
+        /* Component Styles */
+        .app-bar {
+            background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px 8px 0 0;
+            margin: -24px -24px 24px -24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-weight: 500;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .sidebar {
+            width: 260px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .sidebar-item {
+            padding: 14px 24px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #616161;
+        }
+        
+        .sidebar-item:hover {
+            background: #f5f5f5;
+            color: #1976d2;
+        }
+        
+        .sidebar-item.active {
+            background: #e3f2fd;
+            color: #1976d2;
+            font-weight: 500;
+            border-left: 4px solid #1976d2;
+        }
+        
+        .button {
+            background: #1976d2;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .button:hover {
+            background: #1565c0;
+            transform: translateY(-1px);
+        }
+        
+        .button-secondary {
+            background: white;
+            color: #1976d2;
+            border: 1px solid #1976d2;
+        }
+        
+        .button-secondary:hover {
+            background: #e3f2fd;
+        }
+        
+        .card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #bdbdbd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #1976d2;
+            box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+        }
+        
+        .nav-menu {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Jury Management Solution - Interactive Wireframes</h1>
+        
+        <!-- Navigation Menu -->
+        <div class="nav-menu">
+            <h3 style="margin-bottom: 16px;">Click to Navigate Between Screens:</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                <button class="button button-secondary" onclick="showScreen('login')">Login</button>
+                <button class="button button-secondary" onclick="showScreen('dashboard')">Dashboard</button>
+                <button class="button button-secondary" onclick="showScreen('jurors')">Juror Management</button>
+                <button class="button button-secondary" onclick="showScreen('detail')">Juror Detail</button>
+                <button class="button button-secondary" onclick="showScreen('portal')">Juror Portal</button>
+                <button class="button button-secondary" onclick="showScreen('summons')">Summons</button>
+                <button class="button button-secondary" onclick="showScreen('schedule')">Scheduling</button>
+                <button class="button button-secondary" onclick="showScreen('compensation')">Compensation</button>
+                <button class="button button-secondary" onclick="showScreen('communications')">Communications</button>
+                <button class="button button-secondary" onclick="showScreen('settings')">Settings</button>
+                <button class="button button-secondary" onclick="showScreen('reports')">Reports</button>
+            </div>
+        </div>
+        
+        <!-- Login Screen -->
+        <div class="wireframe-section active" id="login">
+            <div class="wireframe-header">
+                <h3>Login Screen</h3>
+                <p>Secure authentication portal</p>
+            </div>
+            <div class="wireframe-content">
+                <div class="wireframe" style="max-width: 400px; margin: 0 auto;">
+                    <div style="text-align: center; padding: 40px;">
+                        <h2 style="color: #1976d2; margin-bottom: 32px;">Jury Management System</h2>
+                        <input type="email" class="form-input" placeholder="Email" style="margin-bottom: 16px;">
+                        <input type="password" class="form-input" placeholder="Password" style="margin-bottom: 24px;">
+                        <button class="button" style="width: 100%;" onclick="showScreen('dashboard')">Sign In</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Dashboard -->
+        <div class="wireframe-section" id="dashboard">
+            <div class="wireframe-header">
+                <h3>Admin Dashboard</h3>
+                <p>Overview and quick actions</p>
+            </div>
+            <div class="wireframe-content">
+                <div class="wireframe">
+                    <div class="app-bar">
+                        <div class="logo">JMS Admin Portal</div>
+                        <button class="button" style="background: rgba(255,255,255,0.2);" onclick="showScreen('login')">Logout</button>
+                    </div>
+                    
+                    <div style="display: flex; gap: 24px;">
+                        <div class="sidebar">
+                            <div class="sidebar-item active">Dashboard</div>
+                            <div class="sidebar-item" onclick="showScreen('jurors')">Juror Management</div>
+                            <div class="sidebar-item" onclick="showScreen('summons')">Summons</div>
+                            <div class="sidebar-item" onclick="showScreen('schedule')">Scheduling</div>
+                            <div class="sidebar-item" onclick="showScreen('compensation')">Compensation</div>
+                            <div class="sidebar-item" onclick="showScreen('communications')">Communications</div>
+                            <div class="sidebar-item" onclick="showScreen('reports')">Reports</div>
+                            <div class="sidebar-item" onclick="showScreen('settings')">Settings</div>
+                        </div>
+                        
+                        <div style="flex: 1;">
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 24px;">
+                                <div class="card">
+                                    <h4>Yield Rate</h4>
+                                    <div style="font-size: 32px; color: #1976d2; margin: 16px 0;">87%</div>
+                                    <p style="color: #4caf50;">↑ 5% from last month</p>
+                                </div>
+                                <div class="card">
+                                    <h4>Pending</h4>
+                                    <div style="font-size: 32px; color: #ff9800; margin: 16px 0;">124</div>
+                                    <p>28 due today</p>
+                                </div>
+                                <div class="card">
+                                    <h4>Active Jurors</h4>
+                                    <div style="font-size: 32px; color: #4caf50; margin: 16px 0;">456</div>
+                                    <p>Across 12 trials</p>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <h4 style="margin-bottom: 20px;">Quick Actions</h4>
+                                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+                                    <button class="button button-secondary" onclick="showScreen('summons')">New Summons</button>
+                                    <button class="button button-secondary" onclick="showScreen('reports')">Generate Report</button>
+                                    <button class="button button-secondary" onclick="showScreen('jurors')">Add Juror</button>
+                                    <button class="button button-secondary" onclick="showScreen('schedule')">Schedule Trial</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Juror Management -->
+        <div class="wireframe-section" id="jurors">
+            <div class="wireframe-header">
+                <h3>Juror Management</h3>
+                <p>View and manage all jurors</p>
+            </div>
+            <div class="wireframe-content">
+                <div class="wireframe">
+                    <div style="margin-bottom: 24px;">
+                        <input type="text" class="form-input" placeholder="Search jurors..." style="width: 300px; display: inline-block; margin-right: 16px;">
+                        <button class="button">Search</button>
+                        <button class="button button-secondary" style="float: right;">Export</button>
+                    </div>
+                    
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: #f5f5f5;">
+                                <th style="padding: 12px; text-align: left;">Name</th>
+                                <th style="padding: 12px; text-align: left;">Status</th>
+                                <th style="padding: 12px; text-align: left;">District</th>
+                                <th style="padding: 12px; text-align: left;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 12px;">John Doe</td>
+                                <td style="padding: 12px;"><span style="background: #e8f5e9; color: #2e7d32; padding: 4px 12px; border-radius: 16px;">Qualified</span></td>
+                                <td style="padding: 12px;">District 3</td>
+                                <td style="padding: 12px;">
+                                    <a href="#" onclick="showScreen('detail')" style="color: #1976d2; margin-right: 16px;">View</a>
+                                    <a href="#" style="color: #1976d2;">Edit</a>
+                                </td>
+                            </tr>
+                            <tr style="background: #fafafa;">
+                                <td style="padding: 12px;">Jane Smith</td>
+                                <td style="padding: 12px;"><span style="background: #fff8e1; color: #f57c00; padding: 4px 12px; border-radius: 16px;">Pending</span></td>
+                                <td style="padding: 12px;">District 5</td>
+                                <td style="padding: 12px;">
+                                    <a href="#" onclick="showScreen('detail')" style="color: #1976d2; margin-right: 16px;">View</a>
+                                    <a href="#" style="color: #1976d2;">Edit</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div style="margin-top: 24px;">
+                        <button class="button button-secondary" onclick="showScreen('dashboard')">Back to Dashboard</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Juror Detail -->
+        <div class="wireframe-section" id="detail">
+            <div class="wireframe-header">
+                <h3>Juror Detail View</h3>
+                <p>Complete juror information</p>
+            </div>
+            <div class="wireframe-content">
+                <div class="wireframe">
+                    <h2>John Doe - JUR-2024-0156</h2>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 32px;">
+                        <div>
+                            <h4 style="margin-bottom: 16px;">Personal Information</h4>
+                            <p><strong>Email:</strong> john.doe@email.com</p>
+                            <p><strong>Phone:</strong> (555) 123-4567</p>
+                            <p><strong>Address:</strong> 123 Main St, City, State 12345</p>
+                            <p><strong>Status:</strong> <span style="background: #e8f5e9; color: #2e7d32; padding: 4px 12px; border-radius: 16px;">Qualified</span></p>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom: 16px;">Service History</h4>
+                            <p>• Summoned: July 10, 2024</p>
+                            <p>• Qualified: July 12, 2024</p>
+                            <p>• Next Service: August 1, 2024</p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 32px;">
+                        <button class="button">Save Changes</button>
+                        <button class="button button-secondary" onclick="showScreen('jurors')">Back to List</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Juror Portal -->
+        <div class="wireframe-section" id="portal">
+            <div class="wireframe-header">
+                <h3>Juror Self-Service Portal</h3>
+                <p>Public-facing juror interface</p>
+            </div>
+            <div class="wireframe-content">
+                <div class="wireframe" style="max-width: 600px; margin: 0 auto;">
+                    <h2 style="color: #1976d2; margin-bottom: 24px;">Welcome, John</h2>
+                    
+                    <div class="card" style="background: #e8f5e9; border-color: #4caf50;">
+                        <h3>Your Status: Qualified to Serve</h3>
+                        <p style="margin-top: 8px;">Report Date: August 1, 2024 at 9:00 AM</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Request Excuse or Deferral</h3>
+                        <select class="form-input" style="margin: 16px 0;">
+                            <option>Select a reason...</option>
+                            <option>Medical condition</option>
+                            <option>Financial hardship</option>
+                            <option>Caregiver responsibilities</option>
+                        </select>
+                        <button class="button" style="width: 100%;">Submit Request</button>
+                    </div>
+                    
+                    <button class="button button-secondary" onclick="showScreen('login')" style="width: 100%; margin-top: 24px;">Sign Out</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Summons Generation -->
+        <div class="wireframe-section" id="summons">
+            <div class="wireframe-header">
+                <h3>Summons Generation</h3>
+                <p>Create and manage jury summons</p>
+            </div>
+            <div class="wireframe-content">
+                <div class="wireframe">
+                    <h2>Generate New Summons</h2>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 32px;">
+                        <div>
+                            <h4 style="margin-bottom: 16px;">Selection Criteria</h4>
+                            <label style="display: block; margin-bottom: 16px;">
+                                <div style="margin-bottom: 8px;">Number of Jurors Needed</div>
+                                <input type="number" class="form-input" value="150">
+                            </label>
+                            <label style="display: block; margin-bottom: 16px;">
+                                <div style="margin-bottom: 8px;">Service Start Date</div>
+                                <input type="date" class="form-input">
+                            </label>
+                            <label style="display: block; margin-bottom: 16px;">
+                                <div style="margin-bottom: 8px;">District</div>
+                                <select class="form-input">
+                                    <option>All Districts</option>
+                                    <option>District 1</option>
+                                    <option>District 2</option>
+                                    <option>District 3</option>
+                                </select>
+                            </label>
+                        </div>
+                        
+                        <div>
+                            <h4 style="margin-bottom: 16px;">Selection Summary</h4>
+                            <div class="card" style="background: #f5f5f5;">
+                                <p>Total Eligible: 8,234</p>
+                                <p>After Exclusions: 6,123</p>
+                                <p>Selection Rate: 2.4%</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 32px;">
+                        <button class="button">Generate Summons</button>
+                        <button class="button button-secondary" onclick="showScreen('dashboard')">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scheduling -->
+        <div class="wireframe-section" id="schedule">
+            <div class="wireframe-header">
+                <h3>Trial Scheduling Calendar</h3>
+                <p>Manage trial schedules and jury assignments</p>
+            </div>
+            <div class="wireframe-content">
+                <div class="wireframe">
+                    <h2>August 2024</h2>
+                    
+                    <div style="margin-top: 24px; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
+                        <div style="display: grid; grid-template-columns: repeat(7, 1fr); background: #f5f5f5;">
+                            <div style="padding: 16px; text-align: center; font-weight: bold;">Sun</div>
+                            <div style="padding: 16px; text-align: center; font-weight: bold;">Mon</div>
+                            <div style="padding: 16px; text-align: center; font-weight: bold;">Tue</div>
+                            <div style="padding: 16px; text-align: center; font-weight: bold;">Wed</div>
+                            <div style="padding: 16px; text-align: center; font-weight: bold;">Thu</div>
+                            <div style="padding: 16px; text-align: center; font-weight: bold;">Fri</div>
+                            <div style="padding: 16px; text-align: center; font-weight: bold;">Sat</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(7, 1fr);">
+                            <div style="min-height: 100px; padding: 8px; border-right: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0;"></div>
+                            <div style="min-height: 100px; padding: 8px; border-right: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0;"></div>
+                            <div style="min-height: 100px; padding: 8px; border-right: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0;"></div>
+                            <div style="min-height: 100px; padding: 8px; border-right: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0;"></div>
+                            <div style="min-height: 100px; padding: 8px; border-right: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0;">
+                                <div style="font-weight: bold;">1</div>
+                                <div style="background: #e3f2fd; color: #1565c0; padding: 4px; border-radius: 4px; font-size: 12px; margin-top: 4px;">
+                                    State v. Johnson
+                                </div>
+                            </div>
+                            <div style="min-height: 100px; padding: 8px; border-right: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0;">
+                                <div style="font-weight: bold;">2</div>
+                            </div>
+                            <div style="min-height: 100px; padding: 8px; border-bottom: 1px solid #e0e0e0;">
+                                <div style="font-weight: bold;">3</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 32px;">
+                        <button class="button">Schedule New Trial</button>
+                        <button class="button button-secondary" onclick="showScreen('dashboard')">Back to Dashboard</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Compensation -->
+        <div class="wireframe-section" id="compensation">
+            <div class="wireframe-header">
+                <h3>Compensation & Payments</h3>
+                <p>Track and process juror payments</p>
+            </div>
+            <div class="wireframe-content">
+                <div class="wireframe">
+                    <h2>Pending Payments</h2>
+                    
+                    <div class="card" style="margin: 24px 0;">
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+                            <div>
+                                <h4>Total Pending</h4>
+                                <div style="font-size: 24px; color: #1976d2;">$12,456</div>
+                            </div>
+                            <div>
+                                <h4>Ready to Pay</h4>
+                                <div style="font-size: 24px; color: #4caf50;">$8,920</div>
+                            </div>
+                            <div>
+                                <h4>Needs Review</h4>
+                                <div style="font-size: 24px; color: #ff9800;">$3,536</div>
+                            </div>
+                            <div>
+                                <h4>Average Payment</h4>
+                                <div style="font-size: 24px;">$50.84</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: #f5f5f5;">
+                                <th style="padding: 12px; text-align: left;">Juror</th>
+                                <th style="padding: 12px; text-align: left;">Days</th>
+                                <th style="padding: 12px; text-align: left;">Amount</th>
+                                <th style="padding: 12px; text-align: left;">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 12px;">Sarah Williams</td>
+                                <td style="padding: 12px;">5</td>
+                                <td style="padding: 12px;">$225.50</td>
+                                <td style="padding: 12px;"><span style="background: #e8f5e9; color: #2e7d32; padding: 4px 12px; border-radius: 16px;">Ready</span></td>
+                            </tr>
+                            <tr style="background: #fafafa;">
+                                <td style="padding: 12px;">Michael Chen</td>
+                                <td style="padding: 12px;">3</td>
+                                <td style="padding: 12px;">$138.00</td>
+                                <td style="padding: 12px;"><span style="background: #e8f5e9; color: #2e7d32; padding: 4px 12px; border-radius: 16px;">Ready</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div style="margin-top: 32px;">
+                        <button class="button">Process Payments</button>
+                        <button class="button button-secondary" onclick="showScreen('dashboard')">Back to Dashboard</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Communications -->
+        <div class="wireframe-section" id="communications">
+            <div class="wireframe-header">
+                <h3>Communications Hub</h3>
+                <p>Manage juror communications</p>
+            </div>
+            <div class="wireframe-content">
+                <div class="wireframe">
+                    <h2>Compose Message</h2>
+                    
+                    <div style="display: grid; grid-template-columns: 250px 1fr; gap: 40px; margin-top: 32px;">
+                        <div>
+                            <h4 style="margin-bottom: 16px;">Templates</h4>
+                            <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px;">
+                                <div style="padding: 8px; background: #e3f2fd; border-radius: 4px; margin-bottom: 8px; cursor: pointer;">Summons Notice</div>
+                                <div style="padding: 8px; cursor: pointer;">Reminder</div>
+                                <div style="padding: 8px; cursor: pointer;">Excuse Approved</div>
+                                <div style="padding: 8px; cursor: pointer;">Payment Processed</div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label style="display: block; margin-bottom: 16px;">
+                                <div style="margin-bottom: 8px;">Recipients</div>
+                                <input type="text" class="form-input" placeholder="Search jurors or enter email...">
+                            </label>
+                            
+                            <label style="display: block; margin-bottom: 16px;">
+                                <div style="margin-bottom: 8px;">Subject</div>
+                                <input type="text" class="form-input" value="Important: Your Jury Duty Summons">
+                            </label>
+                            
+                            <label style="display: block; margin-bottom: 16px;">
+                                <div style="margin-bottom: 8px;">Message</div>
+                                <textarea class="form-input" rows="10" style="resize: vertical;">Dear {JUROR_NAME},
+
+You have been selected for jury duty...</textarea>
+                            </label>
+                            
+                            <button class="button">Send Message</button>
+                            <button class="button button-secondary" onclick="showScreen('dashboard')">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Settings -->
+        <div class="wireframe-section" id="settings">
+            <div class="wireframe-header">
+                <h3>System Settings</h3>
+                <p>Configure system parameters</p>
+            </div>
+            <div class="wireframe-content">
+                <div class="wireframe">
+                    <h2>General Settings</h2>
+                    
+                    <div style="display: grid; grid-template-columns: 200px 1fr; gap: 40px; margin-top: 32px;">
+                        <div style="border-right: 1px solid #e0e0e0; padding-right: 20px;">
+                            <div style="padding: 12px; background: #e3f2fd; border-radius: 4px; margin-bottom: 8px; cursor: pointer;">General</div>
+                            <div style="padding: 12px; cursor: pointer;">Jury Parameters</div>
+                            <div style="padding: 12px; cursor: pointer;">User Management</div>
+                            <div style="padding: 12px; cursor: pointer;">Email Config</div>
+                            <div style="padding: 12px; cursor: pointer;">Backup</div>
+                        </div>
+                        
+                        <div>
+                            <h4 style="margin-bottom: 16px;">Court Information</h4>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px;">
+                                <label>
+                                    <div style="margin-bottom: 8px;">Court Name</div>
+                                    <input type="text" class="form-input" value="Superior Court of Example County">
+                                </label>
+                                <label>
+                                    <div style="margin-bottom: 8px;">Court ID</div>
+                                    <input type="text" class="form-input" value="SCEC-001" disabled style="background: #f5f5f5;">
+                                </label>
+                            </div>
+                            
+                            <h4 style="margin-bottom: 16px;">System Preferences</h4>
+                            <label style="display: flex; align-items: center; margin-bottom: 16px;">
+                                <input type="checkbox" checked style="margin-right: 8px;">
+                                Enable Two-Factor Authentication
+                            </label>
+                            <label style="display: flex; align-items: center; margin-bottom: 16px;">
+                                <input type="checkbox" checked style="margin-right: 8px;">
+                                Auto-save Draft Forms
+                            </label>
+                            
+                            <div style="margin-top: 32px;">
+                                <button class="button">Save Settings</button>
+                                <button class="button button-secondary" onclick="showScreen('dashboard')">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Reports -->
+        <div class="wireframe-section" id="reports">
+            <div class="wireframe-header">
+                <h3>Reports & Analytics</h3>
+                <p>Generate and view reports</p>
+            </div>
+            <div class="wireframe-content">
+                <div class="wireframe">
+                    <h2>Analytics Dashboard</h2>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 32px 0;">
+                        <div class="card">
+                            <h4>Response Rate</h4>
+                            <div style="font-size: 32px; color: #1976d2;">85.2%</div>
+                            <p style="color: #4caf50;">↑ 3.5% from last period</p>
+                        </div>
+                        <div class="card">
+                            <h4>Avg Processing</h4>
+                            <div style="font-size: 32px; color: #1976d2;">3.2 days</div>
+                            <p style="color: #4caf50;">22% faster</p>
+                        </div>
+                        <div class="card">
+                            <h4>Cost per Juror</h4>
+                            <div style="font-size: 32px; color: #1976d2;">$48.75</div>
+                            <p style="color: #4caf50;">↓ $2.30 reduction</p>
+                        </div>
+                        <div class="card">
+                            <h4>Satisfaction</h4>
+                            <div style="font-size: 32px; color: #1976d2;">4.2/5.0</div>
+                            <p>Based on 1,234 surveys</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h4 style="margin-bottom: 16px;">Generate Custom Reports</h4>
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+                            <button class="button button-secondary">Demographics Report</button>
+                            <button class="button button-secondary">Financial Summary</button>
+                            <button class="button button-secondary">Monthly Summary</button>
+                            <button class="button button-secondary">Compliance Audit</button>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 32px;">
+                        <button class="button button-secondary" onclick="showScreen('dashboard')">Back to Dashboard</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showScreen(screenId) {
+            // Hide all screens
+            document.querySelectorAll('.wireframe-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected screen
+            const selectedScreen = document.getElementById(screenId);
+            if (selectedScreen) {
+                selectedScreen.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+        }
+    </script>
+</body>
+</html>
